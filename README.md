@@ -1,6 +1,6 @@
 # Hexabot Wordpress Chat Widget Plugin
 
-[Hexabot](https://hexabot.ai/) is a versatile, open-source chatbot and agent platform that empowers users to effortlessly create and manage AI-driven, multi-channel, and multilingual chatbots. For more details, you can explore the [official GitHub repository](https://github.com/Hexastack/Hexabot/).
+[Hexabot](https://hexabot.ai/) is a versatile, open-source chatbot and agent platform that empowers users to effortlessly create and manage AI-driven, multi-channel, and multilingual chatbots. For more details, you can explore the [Official GitHub repository](https://github.com/Hexastack/Hexabot/).
 
 The [Hexabot](https://hexabot.ai/) Live Chat Widget is a React-based component that easily integrates real-time chat functionality into websites. By connecting to the Hexabot API, it enables smooth interactions between end-users and chatbots across multiple communication channels.
 
@@ -8,7 +8,7 @@ The **Hexabot Chat Widget** WordPress plugin simplifies the process of adding th
 
 ## Features
 - Customizable widget and API URL settings
-- Support for different channels (e.g., online, offline)
+- Support for different channels
 - Easy configuration of your Hexabot token for secure communication
 - Automatically renders the Hexabot chat widget on all pages
 
