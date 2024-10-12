@@ -10,7 +10,7 @@ License: AGPLv3
 
 // Register settings for the plugin
 function hexabot_chat_widget_register_settings() {
-    add_option('hexabot_widget_url', 'https://cdn.jsdelivr.net/npm/hexabot-live-chat-widget@2.0.0-rc.1/dist');
+    add_option('hexabot_widget_url', 'https://cdn.jsdelivr.net/npm/hexabot-chat-widget@2/dist');
     add_option('hexabot_api_url', 'https://hexabot-api.yourdomain.com');
     add_option('hexabot_channel', 'offline');
     add_option('hexabot_token', 'token123');
@@ -71,20 +71,20 @@ function hexabot_chat_widget_embed() {
     <script src="' . esc_url($widget_url) . '/hexabot-widget.umd.js"></script>
     <script>
       (function() {
-        const widgetContainer = document.getElementById("hb-chat-widget");
-        const shadowRoot = widgetContainer.attachShadow({ mode: "open" });
-
-        const shadowContainer = document.createElement("div");
-        shadowRoot.appendChild(shadowContainer);
-
-        const linkElement = document.createElement("link");
-        linkElement.rel = "stylesheet";
-        linkElement.href = "' . esc_url($widget_url) . '/style.css";
-        shadowRoot.appendChild(linkElement);
-
-        const el = React.createElement;
+        const createElement = (tag, props = {}) => Object.assign(document.createElement(tag), props);
+        const shadowContainer = createElement("div");
+        document
+            .getElementById("hb-chat-widget")
+            .attachShadow({ mode: "open" })
+            .append( 
+                shadowContainer,
+                createElement("link", {
+                    rel: "stylesheet",
+                    href: "' . esc_url($widget_url) . '/style.css"
+                })
+            );
         ReactDOM.render(
-          el(HexabotWidget, {
+          React.createElement(HexabotWidget, {
             apiUrl: "' . esc_url($api_url) . '",
             channel: "' . esc_attr($channel) . '",
             token: "' . esc_attr($token) . '",

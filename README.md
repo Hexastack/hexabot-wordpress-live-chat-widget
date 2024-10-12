@@ -30,7 +30,7 @@ The **Hexabot Chat Widget** WordPress plugin simplifies the process of adding th
 4. **Configure Settings:**
    - Once activated, navigate to the **Settings > Hexabot Chat Widget** page in the WordPress admin dashboard.
    - Configure the following options:
-     - **Widget URL**: The URL to the Hexabot widget (default: `https://cdn.jsdelivr.net/gh/hexastack/hexabot/widget/dist`).
+     - **Widget URL**: The URL to the Hexabot widget (default: `https://cdn.jsdelivr.net/npm/hexabot-chat-widget@2/dist`).
      - **API URL**: The URL to your Hexabot API.
      - **Channel**: The communication channel (default: `offline`).
      - **Token**: Your unique Hexabot token for authentication.
