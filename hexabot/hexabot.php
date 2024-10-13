@@ -7,6 +7,8 @@ Author: Hexastack
 License: AGPLv3
 */
 
+// Define plugin version for cache busting
+define('HEXABOT_CHAT_WIDGET_VERSION', '1.0');
 
 // Register settings for the plugin
 function hexabot_chat_widget_register_settings() {
@@ -58,43 +60,51 @@ function hexabot_chat_widget_options_page() {
     <?php
 }
 
-// Function to embed the Hexabot chat widget on all pages
+
+// Function to embed the chat widget container and scripts in the footer
 function hexabot_chat_widget_embed() {
     $widget_url = get_option('hexabot_widget_url');
     $api_url = get_option('hexabot_api_url');
     $channel = get_option('hexabot_channel');
     $token = get_option('hexabot_token');
 
-    echo '<div id="hb-chat-widget"></div>
-    <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="' . esc_url($widget_url) . '/hexabot-widget.umd.js"></script>
-    <script>
-      (function() {
-        const createElement = (tag, props = {}) => Object.assign(document.createElement(tag), props);
-        const shadowContainer = createElement("div");
-        document
-            .getElementById("hb-chat-widget")
-            .attachShadow({ mode: "open" })
-            .append( 
-                shadowContainer,
-                createElement("link", {
-                    rel: "stylesheet",
-                    href: "' . esc_url($widget_url) . '/style.css"
-                })
+    // Output the chat widget div
+    echo '<div id="hb-chat-widget"></div>';
+
+    // Enqueue React and ReactDOM
+    wp_enqueue_script('react', 'https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js', array(), '18.0.0', true);
+    wp_enqueue_script('react-dom', 'https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js', array('react'), '18.0.0', true);
+
+    // Enqueue Hexabot widget
+    wp_enqueue_script('hexabot-widget', esc_url($widget_url) . '/hexabot-widget.umd.js', array('react', 'react-dom'), HEXABOT_CHAT_WIDGET_VERSION, true);
+
+    // Add inline script to initialize the widget after the div
+    wp_add_inline_script('hexabot-widget', "
+        (function() {
+            const createElement = (tag, props = {}) => Object.assign(document.createElement(tag), props);
+            const shadowContainer = createElement('div');
+            document
+                .getElementById('hb-chat-widget')
+                .attachShadow({ mode: 'open' })
+                .append( 
+                    shadowContainer,
+                    createElement('link', {
+                        rel: 'stylesheet',
+                        href: '" . esc_url($widget_url) . "/style.css'
+                    })
+                );
+            ReactDOM.render(
+              React.createElement(HexabotWidget, {
+                apiUrl: '" . esc_url($api_url) . "',
+                channel: '" . esc_attr($channel) . "',
+                token: '" . esc_attr($token) . "',
+              }),
+              shadowContainer
             );
-        ReactDOM.render(
-          React.createElement(HexabotWidget, {
-            apiUrl: "' . esc_url($api_url) . '",
-            channel: "' . esc_attr($channel) . '",
-            token: "' . esc_attr($token) . '",
-          }),
-          shadowContainer
-        );
-      })();
-    </script>';
+        })();
+    ");
 }
 
-// Hook the function to wp_footer to ensure it appears on all pages
+// Hook the function to embed the widget container and enqueue scripts to wp_footer
 add_action('wp_footer', 'hexabot_chat_widget_embed');
 ?>
