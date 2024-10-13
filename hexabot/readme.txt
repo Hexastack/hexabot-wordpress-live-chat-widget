@@ -1,8 +1,8 @@
 === Hexabot Chat Widget ===
 Contributors: Hexastack
-Tags: chatbot, live chat, hexabot, widget, customer service, chat widget
+Tags: chatbot, ai, live chat, customer service, chat widget
 Requires at least: 5.6
-Tested up to: 6.3
+Tested up to: 6.6
 Stable tag: 1.0
 Requires PHP: 7.4
 License: AGPLv3
@@ -10,10 +10,11 @@ License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
 Embed Hexabot chat widget into your WordPress site for easy integration of the Hexabot live chat system.
 
-What is [Hexabot](https://hexabot.ai/)? It is an open-source chatbot / agent solution that allows users to create and manage AI-powered, multi-channel, and multilingual chatbots with ease. If you would like to learn more, please visit the [official github repo](https://github.com/Hexastack/Hexabot/).
 == Description ==
 
 The **Hexabot Chat Widget** plugin allows you to easily embed the Hexabot live chat widget into your WordPress website. The widget helps you provide an AI-powered customer service chatbot to interact with your users in real-time.
+
+What is [Hexabot](https://hexabot.ai/)? It is an open-source chatbot / agent solution that allows users to create and manage AI-powered, multi-channel, and multilingual chatbots with ease. If you would like to learn more, please visit the [official github repo](https://github.com/Hexastack/Hexabot/).
 
 ### Key Features:
 - Embed the Hexabot chat widget on all pages of your website.
