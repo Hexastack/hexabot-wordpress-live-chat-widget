@@ -6,17 +6,16 @@ Version: 1.0
 Author: Hexastack
 License: AGPLv3
 */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Define plugin version for cache busting
-define('HEXABOT_CHAT_WIDGET_VERSION', '1.0');
+define('HEXABOT_CHAT_WIDGET_VERSION', '2.0.1');
 
 // Register settings for the plugin
 function hexabot_chat_widget_register_settings() {
-    add_option('hexabot_widget_url', 'https://cdn.jsdelivr.net/npm/hexabot-chat-widget@2/dist');
     add_option('hexabot_api_url', 'https://hexabot-api.yourdomain.com');
-    add_option('hexabot_channel', 'offline');
+    add_option('hexabot_channel', 'web-channel');
     add_option('hexabot_token', 'token123');
-    register_setting('hexabot_chat_widget_options_group', 'hexabot_widget_url');
     register_setting('hexabot_chat_widget_options_group', 'hexabot_api_url');
     register_setting('hexabot_chat_widget_options_group', 'hexabot_channel');
     register_setting('hexabot_chat_widget_options_group', 'hexabot_token');
@@ -37,10 +36,6 @@ function hexabot_chat_widget_options_page() {
         <form method="post" action="options.php">
             <?php settings_fields('hexabot_chat_widget_options_group'); ?>
             <table>
-                <tr valign="top">
-                    <th scope="row"><label for="hexabot_widget_url">Widget URL</label></th>
-                    <td><input style="width: 512px;" type="text" id="hexabot_widget_url" name="hexabot_widget_url" value="<?php echo esc_attr(get_option('hexabot_widget_url')); ?>" /></td>
-                </tr>
                 <tr valign="top">
                     <th scope="row"><label for="hexabot_api_url">API URL</label></th>
                     <td><input style="width: 512px;" type="text" id="hexabot_api_url" name="hexabot_api_url" value="<?php echo esc_attr(get_option('hexabot_api_url')); ?>" /></td>
@@ -71,12 +66,12 @@ function hexabot_chat_widget_embed() {
     // Output the chat widget div
     echo '<div id="hb-chat-widget"></div>';
 
-    // Enqueue React and ReactDOM
-    wp_enqueue_script('react', 'https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js', array(), '18.0.0', true);
-    wp_enqueue_script('react-dom', 'https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js', array('react'), '18.0.0', true);
+    // Enqueue React and React DOM in compatibility mode (they are loaded as window.React and window.ReactDOM)
+    wp_enqueue_script('react');
+    wp_enqueue_script('react-dom');
 
     // Enqueue Hexabot widget
-    wp_enqueue_script('hexabot-widget', esc_url($widget_url) . '/hexabot-widget.umd.js', array('react', 'react-dom'), HEXABOT_CHAT_WIDGET_VERSION, true);
+    wp_enqueue_script('hexabot-widget', plugin_dir_url(__FILE__) . 'assets/hexabot-widget.umd.js', array('react', 'react-dom'), HEXABOT_CHAT_WIDGET_VERSION, true);
 
     // Add inline script to initialize the widget after the div
     wp_add_inline_script('hexabot-widget', "
@@ -90,7 +85,7 @@ function hexabot_chat_widget_embed() {
                     shadowContainer,
                     createElement('link', {
                         rel: 'stylesheet',
-                        href: '" . esc_url($widget_url) . "/style.css'
+                        href: '" . plugin_dir_url(__FILE__) . "assets/hexabot-widget.css'
                     })
                 );
             ReactDOM.render(

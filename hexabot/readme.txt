@@ -12,9 +12,9 @@ Embed Hexabot chat widget into your WordPress site for easy integration of the H
 
 == Description ==
 
-The **Hexabot Chat Widget** plugin allows you to easily embed the Hexabot live chat widget into your WordPress website. The widget helps you provide an AI-powered customer service chatbot to interact with your users in real-time.
+The **Hexabot Chat Widget** plugin allows you to easily embed the Hexabot live chat widget into your WordPress website. The widget helps you provide an AI chatbot to interact with your users in real-time.
 
-What is [Hexabot](https://hexabot.ai/)? It is an open-source chatbot / agent solution that allows users to create and manage AI-powered, multi-channel, and multilingual chatbots with ease. If you would like to learn more, please visit the [official github repo](https://github.com/Hexastack/Hexabot/).
+What is [Hexabot](https://hexabot.ai/)? It is an open-source AI chatbot / agent solution that allows users to create and manage AI-powered, multi-channel, and multilingual chatbots with ease. If you would like to learn more, please visit the [official github repo](https://github.com/Hexastack/Hexabot/).
 
 ### Key Features:
 - Embed the Hexabot chat widget on all pages of your website.
@@ -32,9 +32,6 @@ You can customize the widget using the plugin settings in the WordPress admin ar
 
 == Frequently Asked Questions ==
 
-= What is the Hexabot widget URL? =
-The widget URL points to the Hexabot chat widget script that will be embedded on your site. By default, it loads from a CDN.
-
 = How do I configure the chat widget settings? =
 After activating the plugin, navigate to **Settings > Hexabot Chat Widget** in your WordPress dashboard. Here, you can configure the widget URL, API URL, channel, and token.
 
@@ -42,6 +39,8 @@ After activating the plugin, navigate to **Settings > Hexabot Chat Widget** in y
 Yes, you can point the API URL to your own Hexabot server installation.
 
 == Documentation ==
+
+To learn more about how to integrate the Hexabot chatbot widget in your Wordpress website please check our documentation : https://docs.hexabot.ai/faq/how-can-i-add-the-chatbot-widget-to-my-website
 
 - Official Documentation : https://docs.hexabot.ai
 - Github repo for this plugin : https://github.com/Hexastack/hexabot-wordpress-live-chat-widget
@@ -51,14 +50,13 @@ Yes, you can point the API URL to your own Hexabot server installation.
 
 == Changelog ==
 
+= 2.0.1 =
+* Align the plugin version with the library version.
+* Apply Wordpress review recommendations (JS / CSS assets are local)
+* Re-use Wordpress React library
+
 = 1.0 =
 * Initial release of the Hexabot Chat Widget plugin.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Initial release of the plugin.
-
 
 == License ==
 
