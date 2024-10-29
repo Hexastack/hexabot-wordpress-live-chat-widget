@@ -2,7 +2,7 @@
 /*
 Plugin Name: Hexabot Chat Widget
 Description: Embed Hexabot chat widget into WordPress.
-Version: 1.0
+Version: 2.0.1
 Author: Hexastack
 License: AGPLv3
 */

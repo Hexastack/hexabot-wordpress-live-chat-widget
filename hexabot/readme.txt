@@ -3,7 +3,7 @@ Contributors: Hexastack
 Tags: chatbot, ai, live chat, customer service, chat widget
 Requires at least: 5.6
 Tested up to: 6.6
-Stable tag: 1.0
+Stable tag: 2.0.1
 Requires PHP: 7.4
 License: AGPLv3
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
